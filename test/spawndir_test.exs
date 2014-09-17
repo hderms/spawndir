@@ -3,7 +3,7 @@ defmodule SpawnDirTest do
   use Bitwise
 
   @dir Application.get_env :spawndir, :test_dir, Path.join("var", "test")
-  @default_mode 0777
+  @default_mode 0o777
   @default_content "#!/bin/bash\nsleep 10"
   @tree ["cmd1", "cmd2", {"subdir", ["subcmd1"]}]
 

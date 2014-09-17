@@ -4,7 +4,11 @@ defmodule Watcher.Supervisor do
   ## Public interface
 
   def add(cmd, opts \\ [], watcher_supervisor \\ __MODULE__) do
-    Supervisor.start_child watcher_supervisor, [cmd, opts]
+    case Supervisor.start_child watcher_supervisor, [cmd, opts] do
+      {:error, error} -> raise "Was unable to properly start the watcher supervisor: #{inspect(error)}"
+      always -> always
+    end
+
   end
 
 
